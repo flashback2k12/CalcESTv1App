@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CalcESTv1</string>
+    <string name="menu_settings">Settings</string>
+    <string name="headline">Berechnung der Einkommensteuer</string>
+    <string name="steuerjahr">Steuerjahr:</string>
+    <string name="button_weiter">weiter</string>
+    <string name="personenkreis">Personenkreis: text folgt. . .</string>
+    <string name="unterlagen">benötigte Unterlagen: text folgt. . . </string>
+    <string name="angabenGehalt">Angaben Gehaltsschein</string>
+    <string name="bruttoGehalt">Bruttogehalt:</string>
+    <string name="lohnSteuer">Lohnsteuer:</string>
+    <string name="solZ">Soli-Zuschlag:</string>
+    <string name="krankenVers">KrankenVers.:</string>
+    <string name="rentenVers">Rentenvers.:</string>
+    <string name="pflegeVers">Pflegevers.:</string>
+    <string name="arbeitslosenVers">Arbeitslosenvers.:</string>
+    <string name="angabeWK">Angaben Werbungskosten</string>
+    <string name="entfernungWA">EntfernungsKM:</string>
+    <string name="arbeitstage">Arbeitstage:</string>
+    <string name="spendenGezahlt">Spenden:</string>
+    <string name="arbeitsmittelGezahlt">Arbeitsmittel:</string>
+    <string name="telefonkostenGezahlt">Telefonkosten:</string>
+    <string name="angabenVorsorge">Angaben Vorsorge</string>
+    <string name="VorsorgeFolgt">Funktionalitaet folgt demnaechst</string>
+    <string name="angabenAGB">Angaben außergewöhnliche Belastung</string>
+    <string name="krankheitskostenGezahlt">Krankheitskosten:</string>
+    <string name="auswertung">Auswertung</string>
+    <string name="button_auswertung">Auswertung</string>
+    <string name="button_maps">Google Maps</string>
+    <string name="button_WK_ABC">WK ABC</string>
+    <string name="test_auswertung">Rechentest</string>
+    
+
+</resources>
