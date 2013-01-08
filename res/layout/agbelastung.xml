@@ -36,10 +36,14 @@ android:layout_height="fill_parent" >
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvKrankheitskostenGezahlt"
         android:layout_alignBottom="@+id/tvKrankheitskostenGezahlt"
-        android:layout_marginLeft="28dp"
+        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@+id/tvKrankheitskostenGezahlt"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+
+    </EditText>
 
     <Button
         android:id="@+id/button5Act"

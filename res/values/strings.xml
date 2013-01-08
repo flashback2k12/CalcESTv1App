@@ -23,7 +23,7 @@
     <string name="arbeitsmittelGezahlt">Arbeitsmittel:</string>
     <string name="telefonkostenGezahlt">Telefonkosten:</string>
     <string name="angabenVorsorge">Angaben Vorsorge</string>
-    <string name="VorsorgeFolgt">Funktionalitaet folgt demnaechst</string>
+    <string name="ergebnis">(+)Erstattung / (-)Nachzahlung</string>
     <string name="angabenAGB">Angaben außergewöhnliche Belastung</string>
     <string name="krankheitskostenGezahlt">Krankheitskosten:</string>
     <string name="auswertung">Auswertung</string>
@@ -31,6 +31,21 @@
     <string name="button_maps">Google Maps</string>
     <string name="button_WK_ABC">WK ABC</string>
     <string name="test_auswertung">Rechentest</string>
+    <string name="ruerupVers">Rürup-Vers.:</string>
+    <string name="riesterVers">Riester-Vers.:</string>
+    <string name="buVers">BU-Vers.:</string>
+    <string name="unfallVers">Unfall-Vers.:</string>
+    <string name="haftpflichtVers">Haftpflicht-Vers.:</string>
+    <string name="lvMitKap">Lebens-Vers.:</string>
+    <string name="lvMitKap_2">mit Kaptalwahlrecht</string>
+    <string name="lvOhneKap">Lebens-Vers.:</string>
+    <string name="lvOhneKap_2">ohne Kapitalwahlrecht</string>
+    <string name="createfileact">Erstellung Auswertungsdatei</string>
+    <string name="createFolder">Create Folder</string>
+    <string name="createFile">Create File</string>
+    <string name="buttonFolder">Folder</string>
+    <string name="buttonFile">File</string>
+    <string name="buttonData">Data</string>
     
 
 </resources>

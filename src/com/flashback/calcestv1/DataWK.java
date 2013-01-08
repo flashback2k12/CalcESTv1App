@@ -4,20 +4,12 @@ public class DataWK {
 
 	public static DataWK dWK = new DataWK();
 
-	private int steuerJahr;
 	private int ArbeitsTage;
 	private double EntfernungsKMWA;
 	private double SpendenGezahlt;
 	private double ArbeitsMittelGezahlt;
 	private double TelefonKostenGezahlt;
 
-	public int getSteuerJahr() {
-		return steuerJahr;
-	}
-
-	public void setSteuerJahr(int steuerJahr) {
-		this.steuerJahr = steuerJahr;
-	}
 	
 	public int getArbeitsTage() {
 		return ArbeitsTage;

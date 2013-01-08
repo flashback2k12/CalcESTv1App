@@ -39,7 +39,9 @@ android:layout_height="fill_parent" >
         android:layout_marginLeft="40dp"
         android:layout_toRightOf="@+id/tvBruttoGehalt"
         android:ems="10"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal" >
+    	<requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/tvLohnSteuer"
@@ -151,9 +153,8 @@ android:layout_height="fill_parent" >
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvAV"
         android:layout_alignBottom="@+id/tvAV"
+        android:layout_alignLeft="@+id/etRV"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="5dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 

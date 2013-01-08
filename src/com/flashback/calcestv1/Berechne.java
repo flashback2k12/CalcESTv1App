@@ -101,6 +101,134 @@ public class Berechne {
 		{
 		return agB;
 		}
+	}
 	
+	public static double vorsorgeAufwand (int steuerJahr, double RVJahr, double KVJahr, double PVJahr, double AVJahr, double HV, double UV, double BU, double Ruerup, double LvMit, double LvOhne){
+		
+		double vorsorgeAufwand = 0.0;
+		double sonsVorsorgeAufwand = KVJahr+PVJahr+AVJahr+UV+HV+BU+(LvMit*0.88)+LvOhne; 
+		
+		if((KVJahr+PVJahr) <= 1900)
+		{
+			if(sonsVorsorgeAufwand <= 1900)
+			{
+				sonsVorsorgeAufwand = KVJahr+PVJahr+AVJahr+UV+HV+BU+(LvMit*0.88)+LvOhne;
+			}
+			else
+			{
+				sonsVorsorgeAufwand = 1900; 
+			}
+		}
+		else
+		{
+			sonsVorsorgeAufwand = KVJahr+PVJahr;
+		}
+		
+		switch (steuerJahr) {
+		case 2010:
+			{
+				vorsorgeAufwand = ((RVJahr*2+Ruerup)*0.70 - RVJahr) + sonsVorsorgeAufwand;
+			}
+			break;
+		case 2011:
+			{
+				vorsorgeAufwand = ((RVJahr*2+Ruerup)*0.72 - RVJahr) + sonsVorsorgeAufwand;			
+			}
+			break;
+		case 2012:
+			{
+			vorsorgeAufwand = ((RVJahr*2+Ruerup)*0.74 - RVJahr) + sonsVorsorgeAufwand;			
+			}
+		break;	
+		case 2013:
+			{
+			vorsorgeAufwand = ((RVJahr*2+Ruerup)*0.76 - RVJahr) + sonsVorsorgeAufwand;			
+			}
+		break;	
+		case 2014:
+			{
+			vorsorgeAufwand = ((RVJahr*2+Ruerup)*0.78 - RVJahr) + sonsVorsorgeAufwand;			
+			}
+			break;	
+		default:
+			break;
+		}
+				
+		if(steuerJahr == 2010)
+		{
+			if(vorsorgeAufwand <= 14000.00)
+				return Math.round(vorsorgeAufwand*100)/100.00;
+			else 
+				return vorsorgeAufwand = 14000.00;
+		}
+		else if (steuerJahr == 2011) 
+		{
+			if(vorsorgeAufwand <= 14400.00)
+				return Math.round(vorsorgeAufwand*100)/100.00;
+			else 
+				return vorsorgeAufwand = 14400.00;
+		}
+		else if (steuerJahr == 2012) 
+		{
+			if(vorsorgeAufwand <= 14800.00)
+				return Math.round(vorsorgeAufwand*100)/100.00;
+			else 
+				return vorsorgeAufwand = 14800.00;
+		}
+		else if (steuerJahr == 2013) 
+		{
+			if(vorsorgeAufwand <= 15200.00)
+				return Math.round(vorsorgeAufwand*100)/100.00;
+			else 
+				return vorsorgeAufwand = 15200.00;
+		}
+		else if (steuerJahr == 2014) 
+		{
+			if(vorsorgeAufwand <= 15600.00)
+				return Math.round(vorsorgeAufwand*100)/100.00;
+			else 
+				return vorsorgeAufwand = 15600.00;
+		}
+		return vorsorgeAufwand = 0;
+	}
+	
+	public static double zuVerstEinkommen (double gesamtbetragEinkunft, double vorsorgeAufwand, double spendenAbzug, double agBelastungAbzug){
+		double zvE = gesamtbetragEinkunft - vorsorgeAufwand - spendenAbzug - agBelastungAbzug;
+		return Math.round(zvE*100.00)/100.00;
+	}
+	
+	public static double einkommenSteuer (double zuVerstEinkommen){
+		
+		double faktor = 0.0;
+		
+		if ((zuVerstEinkommen == 0) & (zuVerstEinkommen <= 8004))
+		{
+		return 0.0;
+		}
+		else if ((zuVerstEinkommen >= 8005) & (zuVerstEinkommen <= 13469))
+		{
+		faktor = (zuVerstEinkommen - 8004)*0.0001;
+		return Math.round((((912.17 * faktor + 1400) * faktor))*100)/100.00;
+		}
+		else if ((zuVerstEinkommen >= 13470) & (zuVerstEinkommen <= 52881))
+		{
+		faktor = (zuVerstEinkommen - 13469)*0.0001;
+		return Math.round((((228.74 * faktor + 2397) * faktor) + 1038)*100)/100.00;
+		}
+		else if ((zuVerstEinkommen >= 52882) & (zuVerstEinkommen <= 250730))
+		{
+		faktor = (int) zuVerstEinkommen;
+		return Math.round((0.42 * faktor - 8172)*100)/100.00;
+		}
+		else
+		{
+		faktor = (int) zuVerstEinkommen;
+		return Math.round((0.45 * faktor - 15694)*100)/100.00;
+		}
+	}
+	
+	public static double ergebnisSteuer (double einkommenSteuer, double lohnSteuerJahr){
+		double ergebnis = einkommenSteuer - lohnSteuerJahr;
+		return Math.round(ergebnis*100.00)/100.00;
 	}
 }

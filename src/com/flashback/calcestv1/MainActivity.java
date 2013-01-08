@@ -1,11 +1,5 @@
 package com.flashback.calcestv1;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-
-import org.w3c.dom.Text;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,21 +11,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
-//	EditText steuerJahr;
-//	EditText txtFileDir;
-//	EditText txtCreateFolder;
-	
+/*
+	EditText f_line1;
+	EditText f_line2;
+	EditText f_line3;
+	EditText f_line4;
+	EditText f_line5;
+	EditText f_line6;
+	EditText f_line7;
+	EditText f_line8;
+	EditText f_line9;
+	EditText f_line10;
+	*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		steuerJahr = (EditText)findViewById(R.id.etSteuerJahr);
-//		txtFileDir = (EditText)findViewById(R.id.txtFileDir);
-//		txtFileDir.setHint("e.g.:/sdcard/Steuerberechnung/");
-//		txtCreateFolder = (EditText)findViewById(R.id.txtCreateFolder);
-//		txtCreateFolder.setHint("e.g.:/sdcard/Steuerberechnung/Auswertung.txt");
-		
+//		f_line1 = (EditText)findViewById(R.id.etLine1);
+//		f_line2 = (EditText)findViewById(R.id.etLine2);
+//		f_line3 = (EditText)findViewById(R.id.etLine3);
+//		f_line4 = (EditText)findViewById(R.id.etLine4);
+//		f_line5 = (EditText)findViewById(R.id.etLine5);
+//		f_line6 = (EditText)findViewById(R.id.etLine6);
+//		f_line7 = (EditText)findViewById(R.id.etLine7);
+//		f_line8 = (EditText)findViewById(R.id.etLine8);
+//		f_line9 = (EditText)findViewById(R.id.etLine9);
+//		f_line10 = (EditText)findViewById(R.id.etLine10);
 	}
 
 	@Override
@@ -52,7 +57,7 @@ public class MainActivity extends Activity {
 		/*
 		 * uebergabe Steuerjahr
 		 */
-		DataWK.dWK.setSteuerJahr(Integer.parseInt(F_SteuerJahr.getText().toString()));
+		DataVorsorge.dvs.setSteuerJahr(Integer.parseInt(F_SteuerJahr.getText().toString()));
 		/*
 		 * oeffne naechte activity
 		 */
@@ -156,15 +161,33 @@ public class MainActivity extends Activity {
 		/*
 		 * initialisierung vorsorgeaufwand
 		 */
+		EditText F_HaftpflichtVers = (EditText)findViewById(R.id.etHaftpflicht);
+		EditText F_UnfallVers = (EditText)findViewById(R.id.etUnfall); 
+		EditText F_BuVers = (EditText)findViewById(R.id.etBU);
+		EditText F_RuerupVers = (EditText)findViewById(R.id.etRuerup);
+		EditText F_RiesterVers = (EditText)findViewById(R.id.etRiester);
+		EditText F_LVmitKap = (EditText)findViewById(R.id.etLvMitKap);
+		EditText F_LVohneKap = (EditText)findViewById(R.id.etLvOhneKap);
 		
+		try{
 		/*
 		 * uebergabe vorsorgeaufwand
 		 */
-		
+		DataVorsorge.dvs.setHaftpflichtVers(Double.parseDouble(F_HaftpflichtVers.getText().toString())); 
+		DataVorsorge.dvs.setUnfallVers(Double.parseDouble(F_UnfallVers.getText().toString()));
+		DataVorsorge.dvs.setBerufUnfaehigsVers(Double.parseDouble(F_BuVers.getText().toString())); 
+		DataVorsorge.dvs.setRuerupVers(Double.parseDouble(F_RuerupVers.getText().toString()));
+		DataVorsorge.dvs.setRiesterVers(Double.parseDouble(F_RiesterVers.getText().toString()));
+		DataVorsorge.dvs.setLebensVersMitKap(Double.parseDouble(F_LVmitKap.getText().toString()));
+		DataVorsorge.dvs.setLebensVersOhneKap(Double.parseDouble(F_LVohneKap.getText().toString()));
 		/*
 		 * oeffne naechste activity
 		 */
 		setContentView(R.layout.agbelastung);
+		}
+		catch (Exception e){
+			Toast.makeText(getApplicationContext(), "double wert verwenden", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	public void OpenAuswertungsActivity (View view) {
@@ -194,6 +217,7 @@ public class MainActivity extends Activity {
 		 */
 		TextView F_JahresBrutto = (TextView)findViewById(R.id.textView2);
 		F_JahresBrutto.setText("JahresBrutto: "+DataGehalt.dg.getBruttoGehaltJahr());
+//		DataBerechnung.db.setJahresBruttoGehalt(Double.parseDouble(F_JahresBrutto.getText().toString()));
 		/*
 		 * berechnung werbungskosten
 		 */
@@ -207,6 +231,7 @@ public class MainActivity extends Activity {
 		
 		TextView F_Werbungskosten = (TextView)findViewById(R.id.textView3);
 		F_Werbungskosten.setText("Werbungskosten: " +Math.round(mWerbungskosten*100.00)/100.00);
+//		DataBerechnung.db.setWerbungsKosten(Double.parseDouble(F_Werbungskosten.getText().toString()));
 		/*
 		 * berechnung summe einkuenfte
 		 */
@@ -217,6 +242,7 @@ public class MainActivity extends Activity {
 	
 		TextView F_SummeEinkunft = (TextView)findViewById(R.id.textView4);
 		F_SummeEinkunft.setText("Summe Einkuenfte: " +Math.round(mSummeEinkunft*100.00)/100.00);
+//		DataBerechnung.db.setSummeEinkunft(Double.parseDouble(F_SummeEinkunft.getText().toString()));
 		/*
 		 * berechnung gesamtbetrag einkuenfte
 		 */
@@ -226,6 +252,7 @@ public class MainActivity extends Activity {
 		
 		TextView F_GesamtBetragEinkunft = (TextView)findViewById(R.id.textView5);
 		F_GesamtBetragEinkunft.setText("Gesamtbetrag Einkuenfte: " + Math.round(mGesamtBetragEinkunft*100.00)/100.00);
+//		DataBerechnung.db.setGesamtBetragEinkunft(Double.parseDouble(F_GesamtBetragEinkunft.getText().toString()));
 		/*
 		 * berechnung spenden
 		 */
@@ -236,6 +263,7 @@ public class MainActivity extends Activity {
 		
 		TextView F_SpendenAbzug = (TextView)findViewById(R.id.textView6);
 		F_SpendenAbzug.setText("Spendenabzug: " +Math.round(mSpendenAbzug*100.00)/100.00);
+//		DataBerechnung.db.setSpendenAbzug(Double.parseDouble(F_SpendenAbzug.getText().toString()));
 		/*
 		 * berechnung aussergewoehnliche belastung
 		 */
@@ -246,7 +274,110 @@ public class MainActivity extends Activity {
 		
 		TextView F_agBelastungAbzug = (TextView)findViewById(R.id.textView7);
 		F_agBelastungAbzug.setText("außergewöhnliche Belastung: " +Math.round(mAgBelastungAbzug*100.00)/100.00);
+//		DataBerechnung.db.setAgBelastungAbzug(Double.parseDouble(F_agBelastungAbzug.getText().toString()));
+		/*
+		 * berechnung vorsorgeaufwendung
+		 */
+		int mSteuerJahr = DataVorsorge.dvs.getSteuerJahr(); 
+		double mRVJahr = DataGehalt.dg.getRentenVersJahr();
+		double mKVJahr = DataGehalt.dg.getKrankenVersJahr();
+		double mPVJahr = DataGehalt.dg.getPflegeVersJahr();
+		double mAVJahr = DataGehalt.dg.getArbeitslosenVersJahr();
+		double mHV = DataVorsorge.dvs.getHaftpflichtVers();
+		double mUV = DataVorsorge.dvs.getUnfallVers();
+		double mBU = DataVorsorge.dvs.getBerufUnfaehigsVers();
+		double mRuerup = DataVorsorge.dvs.getRuerupVers();
+		double mLVmitKap = DataVorsorge.dvs.getLebensVersMitKap();
+		double mLVohneKap = DataVorsorge.dvs.getLebensVersOhneKap();
+		double mVorsorgeAufwand = 0.0;
+		
+		mVorsorgeAufwand = Berechne.vorsorgeAufwand(mSteuerJahr, mRVJahr, mKVJahr, mPVJahr, mAVJahr, mHV, mUV, mBU, mRuerup, mLVmitKap, mLVohneKap);
+		
+		TextView F_vorsorgeAufwand = (TextView)findViewById(R.id.textView8); 
+		F_vorsorgeAufwand.setText("Vorsorgeaufwand: " +Math.round(mVorsorgeAufwand*100.00)/100.00);	
+//		DataBerechnung.db.setVorsorgeAufwandAbzug(Double.parseDouble(F_vorsorgeAufwand.getText().toString()));
+		/*
+		 * berechnung zuversteuerndes Einkommen
+		 */
+		double mZuVerstEinkommen = 0.0;
+		
+		mZuVerstEinkommen = Berechne.zuVerstEinkommen(mGesamtBetragEinkunft, mVorsorgeAufwand, mSpendenAbzug, mAgBelastungAbzug);
+		
+		TextView F_zuVerstEinkommen = (TextView)findViewById(R.id.textView10);
+		F_zuVerstEinkommen.setText("zu versteuerndes Einkommen: " +Math.round(mZuVerstEinkommen*100.00)/100.00);
+//		DataBerechnung.db.setZuVerstEinkommen(Double.parseDouble(F_zuVerstEinkommen.getText().toString()));
+		/*
+		 * berechnung einkommensteuer
+		 */
+		double mEinkommensteuer = 0.0;
+		
+		mEinkommensteuer = Berechne.einkommenSteuer(mZuVerstEinkommen);
+		
+		TextView F_einkommenSteuer = (TextView)findViewById(R.id.textView11);
+		F_einkommenSteuer.setText("Einkommensteuer: " +Math.round(mEinkommensteuer*100.00)/100.00);
+//		DataBerechnung.db.setEinkommenSteuer(Double.parseDouble(F_einkommenSteuer.getText().toString()));
+		/*
+		 * berechnung nachzahlung / erstattung
+		 */
+		double mlohnSteuerJahr = DataGehalt.dg.getLohnSteuerJahr();
+		double mErgebnisBerechnung = 0.0;
+				
+		mErgebnisBerechnung = Berechne.ergebnisSteuer(mEinkommensteuer, mlohnSteuerJahr);
+		
+		TextView F_ergebnisSteuer = (TextView)findViewById(R.id.textView12);
+		F_ergebnisSteuer.setText("Ergebnis: " +Math.round(mErgebnisBerechnung*100.00)/100.00);
+//		DataBerechnung.db.setErgebnisBerechnung(Double.parseDouble(F_ergebnisSteuer.getText().toString()));
 	}
+	
+	public void OpenFileCreator (View view){
+		
+		TextView F_JahresBrutto = (TextView)findViewById(R.id.textView2);
+		TextView F_Werbungskosten = (TextView)findViewById(R.id.textView3);
+		TextView F_SummeEinkunft = (TextView)findViewById(R.id.textView4);
+		TextView F_GesamtBetragEinkunft = (TextView)findViewById(R.id.textView5);
+		TextView F_SpendenAbzug = (TextView)findViewById(R.id.textView6);
+		TextView F_agBelastungAbzug = (TextView)findViewById(R.id.textView7);
+		TextView F_vorsorgeAufwand = (TextView)findViewById(R.id.textView8);
+		TextView F_zuVerstEinkommen = (TextView)findViewById(R.id.textView10);
+		TextView F_einkommenSteuer = (TextView)findViewById(R.id.textView11);
+		TextView F_ergebnisSteuer = (TextView)findViewById(R.id.textView12);
+		
+		DataBerechnung.db.setJahresBruttoGehalt(Double.parseDouble(F_JahresBrutto.getText().toString()));
+		DataBerechnung.db.setWerbungsKosten(Double.parseDouble(F_Werbungskosten.getText().toString()));
+		DataBerechnung.db.setSummeEinkunft(Double.parseDouble(F_SummeEinkunft.getText().toString()));
+		DataBerechnung.db.setGesamtBetragEinkunft(Double.parseDouble(F_GesamtBetragEinkunft.getText().toString()));
+		DataBerechnung.db.setSpendenAbzug(Double.parseDouble(F_SpendenAbzug.getText().toString()));
+		DataBerechnung.db.setAgBelastungAbzug(Double.parseDouble(F_agBelastungAbzug.getText().toString()));
+		DataBerechnung.db.setVorsorgeAufwandAbzug(Double.parseDouble(F_vorsorgeAufwand.getText().toString()));
+		DataBerechnung.db.setZuVerstEinkommen(Double.parseDouble(F_zuVerstEinkommen.getText().toString()));
+		DataBerechnung.db.setEinkommenSteuer(Double.parseDouble(F_einkommenSteuer.getText().toString()));
+		DataBerechnung.db.setErgebnisBerechnung(Double.parseDouble(F_ergebnisSteuer.getText().toString()));
+		
+		/*
+		 * oeffne naechste activity
+		 */
+		setContentView(R.layout.filecreator);
+	}
+	
+	public void HoleDaten (View view){
+		/*
+		 * hole daten zur file creator activity
+		 */
+//		f_line1.setText(""+DataBerechnung.db.getJahresBruttoGehalt());
+//		f_line2.setText(""+DataBerechnung.db.getWerbungsKosten());
+		
+	}
+	
+	public void btnCreateFolder (View view){
+		
+		
+	}
+	
+	public void btnCreateFile (View view){
+		
+		
+	}
+	
 	/*
 	public void CreateFolder (View view){
 		
