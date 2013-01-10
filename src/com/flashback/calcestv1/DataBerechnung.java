@@ -13,6 +13,7 @@ public class DataBerechnung {
 	private double vorsorgeAufwandAbzug;
 	private double zuVerstEinkommen;
 	private double einkommenSteuer;
+	private double JahresLohnSteuer;
 	private double ergebnisBerechnung;
 	
 
@@ -88,6 +89,14 @@ public class DataBerechnung {
 		this.einkommenSteuer = einkommenSteuer;
 	}
 
+	public double getJahresLohnSteuer() {
+		return JahresLohnSteuer;
+	}
+
+	public void setJahresLohnSteuer(double jahresLohnSteuer) {
+		JahresLohnSteuer = jahresLohnSteuer;
+	}
+	
 	public double getErgebnisBerechnung() {
 		return ergebnisBerechnung;
 	}
@@ -95,6 +104,4 @@ public class DataBerechnung {
 	public void setErgebnisBerechnung(double ergebnisBerechnung) {
 		this.ergebnisBerechnung = ergebnisBerechnung;
 	}
-
-	
 }

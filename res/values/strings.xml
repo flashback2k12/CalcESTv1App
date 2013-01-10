@@ -6,8 +6,8 @@
     <string name="headline">Berechnung der Einkommensteuer</string>
     <string name="steuerjahr">Steuerjahr:</string>
     <string name="button_weiter">weiter</string>
-    <string name="personenkreis">Personenkreis: text folgt. . .</string>
-    <string name="unterlagen">benötigte Unterlagen: text folgt. . . </string>
+    <string name="personenkreis">kinderlose, Gehaltsempfänger</string>
+    <string name="unterlagen">Monatsgehaltsschein, Spendenbescheinigungen, Versicherungsbescheinigungen, Krankheitskosten, Belege fuer Werbungskosten</string>
     <string name="angabenGehalt">Angaben Gehaltsschein</string>
     <string name="bruttoGehalt">Bruttogehalt:</string>
     <string name="lohnSteuer">Lohnsteuer:</string>
@@ -18,19 +18,17 @@
     <string name="arbeitslosenVers">Arbeitslosenvers.:</string>
     <string name="angabeWK">Angaben Werbungskosten</string>
     <string name="entfernungWA">EntfernungsKM:</string>
-    <string name="arbeitstage">Arbeitstage:</string>
+    <string name="arbeitstage">Arbeitstage/Jahr:</string>
     <string name="spendenGezahlt">Spenden:</string>
     <string name="arbeitsmittelGezahlt">Arbeitsmittel:</string>
     <string name="telefonkostenGezahlt">Telefonkosten:</string>
     <string name="angabenVorsorge">Angaben Vorsorge</string>
-    <string name="ergebnis">(+)Erstattung / (-)Nachzahlung</string>
     <string name="angabenAGB">Angaben außergewöhnliche Belastung</string>
     <string name="krankheitskostenGezahlt">Krankheitskosten:</string>
     <string name="auswertung">Auswertung</string>
-    <string name="button_auswertung">Auswertung</string>
+    <string name="button_auswertung">bring me the magic</string>
     <string name="button_maps">Google Maps</string>
     <string name="button_WK_ABC">WK ABC</string>
-    <string name="test_auswertung">Rechentest</string>
     <string name="ruerupVers">Rürup-Vers.:</string>
     <string name="riesterVers">Riester-Vers.:</string>
     <string name="buVers">BU-Vers.:</string>
@@ -45,7 +43,13 @@
     <string name="createFile">Create File</string>
     <string name="buttonFolder">Folder</string>
     <string name="buttonFile">File</string>
-    <string name="buttonData">Data</string>
-    
+    <string name="personenkreis2">Personenkreis:</string>
+    <string name="unterlagen2">benoetige Unterlagen:</string>
+    <string name="etFolder">e.g.: /sdcard/. . ./</string>
+    <string name="etFile">e.g.: /sdcard/. . ./. . ./</string>
+    <string name="hinweis">Hinweis:</string>
+    <string name="hinweis2">Bitte Kommazahlen verwenden!</string>
+    <string name="hinweis3">ausser bei Steuerjahr, Arbeitstage</string>
+      
 
 </resources>

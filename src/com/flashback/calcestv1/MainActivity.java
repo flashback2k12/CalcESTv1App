@@ -1,5 +1,9 @@
 package com.flashback.calcestv1;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,36 +11,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-/*
-	EditText f_line1;
-	EditText f_line2;
-	EditText f_line3;
-	EditText f_line4;
-	EditText f_line5;
-	EditText f_line6;
-	EditText f_line7;
-	EditText f_line8;
-	EditText f_line9;
-	EditText f_line10;
-	*/
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		f_line1 = (EditText)findViewById(R.id.etLine1);
-//		f_line2 = (EditText)findViewById(R.id.etLine2);
-//		f_line3 = (EditText)findViewById(R.id.etLine3);
-//		f_line4 = (EditText)findViewById(R.id.etLine4);
-//		f_line5 = (EditText)findViewById(R.id.etLine5);
-//		f_line6 = (EditText)findViewById(R.id.etLine6);
-//		f_line7 = (EditText)findViewById(R.id.etLine7);
-//		f_line8 = (EditText)findViewById(R.id.etLine8);
-//		f_line9 = (EditText)findViewById(R.id.etLine9);
-//		f_line10 = (EditText)findViewById(R.id.etLine10);
 	}
 
 	@Override
@@ -215,7 +197,7 @@ public class MainActivity extends Activity {
 		/*
 		 * ausgabe jahresbruttogehalt
 		 */
-		TextView F_JahresBrutto = (TextView)findViewById(R.id.textView2);
+		EditText F_JahresBrutto = (EditText)findViewById(R.id.etLine1);
 		F_JahresBrutto.setText("JahresBrutto: "+DataGehalt.dg.getBruttoGehaltJahr());
 //		DataBerechnung.db.setJahresBruttoGehalt(Double.parseDouble(F_JahresBrutto.getText().toString()));
 		/*
@@ -229,7 +211,7 @@ public class MainActivity extends Activity {
 		
 		mWerbungskosten = Berechne.WerbungsKosten(mArbeitstage, mEntfernungWA, mArbeitsmittelGezahlt, mTelefonkostenGezahlt);
 		
-		TextView F_Werbungskosten = (TextView)findViewById(R.id.textView3);
+		EditText F_Werbungskosten = (EditText)findViewById(R.id.etLine2);
 		F_Werbungskosten.setText("Werbungskosten: " +Math.round(mWerbungskosten*100.00)/100.00);
 //		DataBerechnung.db.setWerbungsKosten(Double.parseDouble(F_Werbungskosten.getText().toString()));
 		/*
@@ -240,7 +222,7 @@ public class MainActivity extends Activity {
 		
 		mSummeEinkunft = Berechne.SummeEinkunft(mBruttoJahresGehalt, mWerbungskosten);
 	
-		TextView F_SummeEinkunft = (TextView)findViewById(R.id.textView4);
+		EditText F_SummeEinkunft = (EditText)findViewById(R.id.etLine3);
 		F_SummeEinkunft.setText("Summe Einkuenfte: " +Math.round(mSummeEinkunft*100.00)/100.00);
 //		DataBerechnung.db.setSummeEinkunft(Double.parseDouble(F_SummeEinkunft.getText().toString()));
 		/*
@@ -250,7 +232,7 @@ public class MainActivity extends Activity {
 		
 		mGesamtBetragEinkunft = Berechne.GesamtbetragEinkunft(mSummeEinkunft);
 		
-		TextView F_GesamtBetragEinkunft = (TextView)findViewById(R.id.textView5);
+		EditText F_GesamtBetragEinkunft = (EditText)findViewById(R.id.etLine4);
 		F_GesamtBetragEinkunft.setText("Gesamtbetrag Einkuenfte: " + Math.round(mGesamtBetragEinkunft*100.00)/100.00);
 //		DataBerechnung.db.setGesamtBetragEinkunft(Double.parseDouble(F_GesamtBetragEinkunft.getText().toString()));
 		/*
@@ -261,7 +243,7 @@ public class MainActivity extends Activity {
 		
 		mSpendenAbzug = Berechne.SpendenAbzug(mGesamtBetragEinkunft, mSpendenGezahlt);
 		
-		TextView F_SpendenAbzug = (TextView)findViewById(R.id.textView6);
+		EditText F_SpendenAbzug = (EditText)findViewById(R.id.etLine5);
 		F_SpendenAbzug.setText("Spendenabzug: " +Math.round(mSpendenAbzug*100.00)/100.00);
 //		DataBerechnung.db.setSpendenAbzug(Double.parseDouble(F_SpendenAbzug.getText().toString()));
 		/*
@@ -272,8 +254,8 @@ public class MainActivity extends Activity {
 		
 		mAgBelastungAbzug = Berechne.agBelastungAbzug(mGesamtBetragEinkunft, mKrankheitskostenGezahlt);
 		
-		TextView F_agBelastungAbzug = (TextView)findViewById(R.id.textView7);
-		F_agBelastungAbzug.setText("außergewöhnliche Belastung: " +Math.round(mAgBelastungAbzug*100.00)/100.00);
+		EditText F_agBelastungAbzug = (EditText)findViewById(R.id.etLine6);
+		F_agBelastungAbzug.setText("aussergewoehnliche Belastung: " +Math.round(mAgBelastungAbzug*100.00)/100.00);
 //		DataBerechnung.db.setAgBelastungAbzug(Double.parseDouble(F_agBelastungAbzug.getText().toString()));
 		/*
 		 * berechnung vorsorgeaufwendung
@@ -293,7 +275,7 @@ public class MainActivity extends Activity {
 		
 		mVorsorgeAufwand = Berechne.vorsorgeAufwand(mSteuerJahr, mRVJahr, mKVJahr, mPVJahr, mAVJahr, mHV, mUV, mBU, mRuerup, mLVmitKap, mLVohneKap);
 		
-		TextView F_vorsorgeAufwand = (TextView)findViewById(R.id.textView8); 
+		EditText F_vorsorgeAufwand = (EditText)findViewById(R.id.etLine7); 
 		F_vorsorgeAufwand.setText("Vorsorgeaufwand: " +Math.round(mVorsorgeAufwand*100.00)/100.00);	
 //		DataBerechnung.db.setVorsorgeAufwandAbzug(Double.parseDouble(F_vorsorgeAufwand.getText().toString()));
 		/*
@@ -303,7 +285,7 @@ public class MainActivity extends Activity {
 		
 		mZuVerstEinkommen = Berechne.zuVerstEinkommen(mGesamtBetragEinkunft, mVorsorgeAufwand, mSpendenAbzug, mAgBelastungAbzug);
 		
-		TextView F_zuVerstEinkommen = (TextView)findViewById(R.id.textView10);
+		EditText F_zuVerstEinkommen = (EditText)findViewById(R.id.etLine8);
 		F_zuVerstEinkommen.setText("zu versteuerndes Einkommen: " +Math.round(mZuVerstEinkommen*100.00)/100.00);
 //		DataBerechnung.db.setZuVerstEinkommen(Double.parseDouble(F_zuVerstEinkommen.getText().toString()));
 		/*
@@ -313,74 +295,46 @@ public class MainActivity extends Activity {
 		
 		mEinkommensteuer = Berechne.einkommenSteuer(mZuVerstEinkommen);
 		
-		TextView F_einkommenSteuer = (TextView)findViewById(R.id.textView11);
+		EditText F_einkommenSteuer = (EditText)findViewById(R.id.etLine9);
 		F_einkommenSteuer.setText("Einkommensteuer: " +Math.round(mEinkommensteuer*100.00)/100.00);
 //		DataBerechnung.db.setEinkommenSteuer(Double.parseDouble(F_einkommenSteuer.getText().toString()));
+		/*
+		 * hole JahresLohnsteuerDaten
+		 */
+		EditText F_JahresLohnSteuer = (EditText)findViewById(R.id.etLine10);
+		F_JahresLohnSteuer.setText("vorausbezahlte Steuer: "+DataGehalt.dg.getLohnSteuerJahr());
+		/*
+		 * berechne soliZuschlag
+		 */
+		double mSoliZuschlag = 0.0;
+		double mKapitalSteuer = 0.0;
+		
+		mSoliZuschlag = Berechne.soliZuschlag(mZuVerstEinkommen, mKapitalSteuer, mEinkommensteuer); 
+		
+		EditText F_soliZuschlag = (EditText)findViewById(R.id.etLine11);
+		F_soliZuschlag.setText("SoliZuschlag: " +Math.round(mSoliZuschlag*100.00)/100.00);
+		/*
+		 * hole JahresSoliZuschlag
+		 */
+		EditText F_JahresSoliZuschlag = (EditText)findViewById(R.id.etLine12);
+		F_JahresSoliZuschlag.setText("vorausbezahlter Soli: "+DataGehalt.dg.getSoliZuschlagJahr());
 		/*
 		 * berechnung nachzahlung / erstattung
 		 */
 		double mlohnSteuerJahr = DataGehalt.dg.getLohnSteuerJahr();
+		double mSoliZuschlagJahr = DataGehalt.dg.getSoliZuschlagJahr();
 		double mErgebnisBerechnung = 0.0;
 				
-		mErgebnisBerechnung = Berechne.ergebnisSteuer(mEinkommensteuer, mlohnSteuerJahr);
+		mErgebnisBerechnung = Berechne.ergebnisSteuer(mEinkommensteuer, mSoliZuschlag, mlohnSteuerJahr, mSoliZuschlagJahr);
 		
-		TextView F_ergebnisSteuer = (TextView)findViewById(R.id.textView12);
+		EditText F_ergebnisSteuer = (EditText)findViewById(R.id.etLine13);
 		F_ergebnisSteuer.setText("Ergebnis: " +Math.round(mErgebnisBerechnung*100.00)/100.00);
 //		DataBerechnung.db.setErgebnisBerechnung(Double.parseDouble(F_ergebnisSteuer.getText().toString()));
 	}
 	
-	public void OpenFileCreator (View view){
 		
-		TextView F_JahresBrutto = (TextView)findViewById(R.id.textView2);
-		TextView F_Werbungskosten = (TextView)findViewById(R.id.textView3);
-		TextView F_SummeEinkunft = (TextView)findViewById(R.id.textView4);
-		TextView F_GesamtBetragEinkunft = (TextView)findViewById(R.id.textView5);
-		TextView F_SpendenAbzug = (TextView)findViewById(R.id.textView6);
-		TextView F_agBelastungAbzug = (TextView)findViewById(R.id.textView7);
-		TextView F_vorsorgeAufwand = (TextView)findViewById(R.id.textView8);
-		TextView F_zuVerstEinkommen = (TextView)findViewById(R.id.textView10);
-		TextView F_einkommenSteuer = (TextView)findViewById(R.id.textView11);
-		TextView F_ergebnisSteuer = (TextView)findViewById(R.id.textView12);
-		
-		DataBerechnung.db.setJahresBruttoGehalt(Double.parseDouble(F_JahresBrutto.getText().toString()));
-		DataBerechnung.db.setWerbungsKosten(Double.parseDouble(F_Werbungskosten.getText().toString()));
-		DataBerechnung.db.setSummeEinkunft(Double.parseDouble(F_SummeEinkunft.getText().toString()));
-		DataBerechnung.db.setGesamtBetragEinkunft(Double.parseDouble(F_GesamtBetragEinkunft.getText().toString()));
-		DataBerechnung.db.setSpendenAbzug(Double.parseDouble(F_SpendenAbzug.getText().toString()));
-		DataBerechnung.db.setAgBelastungAbzug(Double.parseDouble(F_agBelastungAbzug.getText().toString()));
-		DataBerechnung.db.setVorsorgeAufwandAbzug(Double.parseDouble(F_vorsorgeAufwand.getText().toString()));
-		DataBerechnung.db.setZuVerstEinkommen(Double.parseDouble(F_zuVerstEinkommen.getText().toString()));
-		DataBerechnung.db.setEinkommenSteuer(Double.parseDouble(F_einkommenSteuer.getText().toString()));
-		DataBerechnung.db.setErgebnisBerechnung(Double.parseDouble(F_ergebnisSteuer.getText().toString()));
-		
-		/*
-		 * oeffne naechste activity
-		 */
-		setContentView(R.layout.filecreator);
-	}
-	
-	public void HoleDaten (View view){
-		/*
-		 * hole daten zur file creator activity
-		 */
-//		f_line1.setText(""+DataBerechnung.db.getJahresBruttoGehalt());
-//		f_line2.setText(""+DataBerechnung.db.getWerbungsKosten());
-		
-	}
-	
 	public void btnCreateFolder (View view){
-		
-		
-	}
-	
-	public void btnCreateFile (View view){
-		
-		
-	}
-	
-	/*
-	public void CreateFolder (View view){
-		
+		EditText txtCreateFolder = (EditText)findViewById(R.id.txtCreateFolder);
 		String FeldtxtCreateFolder = txtCreateFolder.getText().toString();
 		
 		try {
@@ -393,35 +347,93 @@ public class MainActivity extends Activity {
 		} catch (Exception e) {
 			Toast.makeText(getApplicationContext(), "No Folder created", Toast.LENGTH_LONG).show();
 		}
-	}*/
-	/*
-	public void CreateFile (View view){
 		
-		EditText testLine1 = (EditText)findViewById(R.id.editText1);
-		testLine1.setText("Jahresbrutto: "+DataGehalt.dg.getBruttoGehaltJahr());
-		EditText testLine2 = (EditText)findViewById(R.id.editText2);
-		testLine2.setText("JahresLST: " +DataGehalt.dg.getLohnSteuerJahr());
-		EditText testLine3 = (EditText)findViewById(R.id.editText3);
-		testLine3.setText("JahresSolZ: " +DataGehalt.dg.getSoliZuschlagJahr());
-		
-		
+	}
+	
+	public void btnCreateFile (View view){
+		EditText txtFileDir = (EditText)findViewById(R.id.txtFileDir);
+		EditText F_line1 = (EditText)findViewById(R.id.etLine1);
+		EditText F_line2 = (EditText)findViewById(R.id.etLine2);
+		EditText F_line3 = (EditText)findViewById(R.id.etLine3);
+		EditText F_line4 = (EditText)findViewById(R.id.etLine4);
+		EditText F_line5 = (EditText)findViewById(R.id.etLine5);
+		EditText F_line6 = (EditText)findViewById(R.id.etLine6);
+		EditText F_line7 = (EditText)findViewById(R.id.etLine7);
+		EditText F_line8 = (EditText)findViewById(R.id.etLine8);
+		EditText F_line9 = (EditText)findViewById(R.id.etLine9);
+		EditText F_line10 = (EditText)findViewById(R.id.etLine10);
+		EditText F_line11 = (EditText)findViewById(R.id.etLine11);
+		EditText F_line12 = (EditText)findViewById(R.id.etLine12);
+		EditText F_line13 = (EditText)findViewById(R.id.etLine13);
+				
 		String FeldtxtFileDir = txtFileDir.getText().toString(); 
-		
-		String F_line1 = testLine1.getText().toString();
-		String F_line2 = testLine2.getText().toString();
-		String F_line3 = testLine3.getText().toString();
-		
+		String line1 = F_line1.getText().toString();
+		String line2 = F_line2.getText().toString();
+		String line3 = F_line3.getText().toString();
+		String line4 = F_line4.getText().toString();
+		String line5 = F_line5.getText().toString();
+		String line6 = F_line6.getText().toString();
+		String line7 = F_line7.getText().toString();
+		String line8 = F_line8.getText().toString();
+		String line9 = F_line9.getText().toString();
+		String line10 = F_line10.getText().toString();
+		String line11 = F_line11.getText().toString();
+		String line12 = F_line12.getText().toString();
+		String line13 = F_line13.getText().toString();
+				
 		try {
 			File myFile = new File(FeldtxtFileDir);
 			myFile.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(myFile);
 			OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-			myOutWriter.append(F_line1);
 			myOutWriter.append("\n");
-			myOutWriter.append(F_line2);
+			myOutWriter.append("--------------------------------------------");
 			myOutWriter.append("\n");
-			myOutWriter.append(F_line3);
-			myOutWriter.append("\n"); 
+			myOutWriter.append("Auswertung");
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line1);
+			myOutWriter.append("\n");
+			myOutWriter.append(line2);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line3);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line4);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line5);
+			myOutWriter.append("\n");
+			myOutWriter.append(line6);
+			myOutWriter.append("\n");
+			myOutWriter.append(line7);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line8);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line9);
+			myOutWriter.append("\n");
+			myOutWriter.append(line10);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line11);
+			myOutWriter.append("\n");
+			myOutWriter.append(line12);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line13);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
 			myOutWriter.close();
 			fOut.close();
 			Toast.makeText(getBaseContext(),"Done writing SD ",Toast.LENGTH_SHORT).show();
@@ -429,5 +441,5 @@ public class MainActivity extends Activity {
 			Toast.makeText(getBaseContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
 		}
 	}
-	*/
+	
 }

@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flashback.calcestv1"
     android:versionCode="1"
-    android:versionName="1.1.8" >
+    android:versionName="1.2.1.6" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="9"
         android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

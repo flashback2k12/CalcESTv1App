@@ -227,8 +227,34 @@ public class Berechne {
 		}
 	}
 	
-	public static double ergebnisSteuer (double einkommenSteuer, double lohnSteuerJahr){
-		double ergebnis = einkommenSteuer - lohnSteuerJahr;
+	public static double soliZuschlag (double zuVerstEinkommen, double kapitalSteuer, double einkommenSteuer){
+		double FREIBETRAGSOLI = 972.0; 
+		/*
+		 * berechne soliZuschlag
+		 */
+		double soliZuschlag = zuVerstEinkommen*0.055;
+		/*
+		 * berechne haerteklausel soliZuschlag
+		 */
+		double haerteKlausel = ((zuVerstEinkommen-kapitalSteuer-FREIBETRAGSOLI)*0.2)+(kapitalSteuer*0.055); 
+		/*
+		 * vergleichabfrage zwischen obergrenze und tatsaechlichen zuschlag
+		 */
+		if (soliZuschlag <= FREIBETRAGSOLI)
+		{
+			return 0.0; 
+		}
+		else if (soliZuschlag <= haerteKlausel)
+		{
+			return Math.round(soliZuschlag*100.00)/100.00;
+		} else
+		{
+			return Math.round(haerteKlausel*100.00)/100.00; 
+		}
+	}
+	
+	public static double ergebnisSteuer (double einkommenSteuer, double soliZuschlag, double lohnSteuerJahr, double soliZuschlagJahr){
+		double ergebnis = einkommenSteuer + soliZuschlag - lohnSteuerJahr - soliZuschlagJahr;
 		return Math.round(ergebnis*100.00)/100.00;
 	}
 }
