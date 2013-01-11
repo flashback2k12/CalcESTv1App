@@ -5,14 +5,18 @@ public class Berechne {
 
 	public static double WerbungsKosten(int ArbeitsTage, double EntfernungWA,
 			double ArbeitsMittelGezahlt, double TelefonKostenGezahlt) {
-
+/*
+* init konstanten + notwendige variablen
+*/
 		double ENTFERNUNGSPAUSCHALE = 0.3;
 		double KONTOFUEHRUNG = 16.0;
 		double WerbungsKostenAbzug = 0.0;
 		double ArbeitsMittelAbzug = 0.0;
 		double TelefonKostenAbzug = 0.0;
 		double WerbungsKostenGezahlt = 0.0;
-
+/*
+* Kontrollstruktur zum Arbeitsmittelabzug --> pauschal oder tatsaechliche ausgaben guenstiger fuer AN
+*/
 		if (ArbeitsMittelGezahlt <= 110.0) 
 		{
 			ArbeitsMittelAbzug = 110.0;
@@ -20,16 +24,22 @@ public class Berechne {
 		else {
 			ArbeitsMittelAbzug = Math.round(ArbeitsMittelGezahlt * 100.00) / 100.00;
 		}
-
+/*
+* Kontrollstruktur zum Telefonkostenabzug --> pauschal oder tatsaechliche ausgaben guenstiger fuer AN
+*/
 		if (TelefonKostenGezahlt <= 240.0) {
 			TelefonKostenAbzug = 240.0;
 		} else {
 			TelefonKostenAbzug = Math.round(TelefonKostenGezahlt * 100.00) / 100.00;
 		}
-
+/*
+* Berechnung der gezahlten Werbungskosten
+*/
 		WerbungsKostenGezahlt = Math.round(((ArbeitsTage * EntfernungWA * ENTFERNUNGSPAUSCHALE) + KONTOFUEHRUNG
 						+ ArbeitsMittelAbzug + TelefonKostenAbzug) * 100.00) / 100.00;
-
+/*
+* Kontrollstruktur zum Werbungskostenabzug --> pauschal oder tatsaechliche ausgaben guenstiger fuer AN
+*/
 		if (WerbungsKostenGezahlt <= 1000.0) {
 			WerbungsKostenAbzug = 1000.0;
 		} else {
@@ -39,7 +49,10 @@ public class Berechne {
 	}
 
 	public static double SummeEinkunft(double JahresBruttoLohn,	double WerbungsKosten) {
-		double SummeEinkunft = JahresBruttoLohn - WerbungsKosten;
+/*
+* Berechnung Summe der Einkuenfte + Ausgabe gerundetes Ergebnis
+*/
+    //mmeEinkunft = JahresBruttoLohn - WerbungsKosten;
 		return Math.round(SummeEinkunft * 100.00) / 100.00;
 	}
 	
