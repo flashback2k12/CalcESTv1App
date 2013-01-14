@@ -162,11 +162,12 @@ android:layout_height="fill_parent" >
         android:id="@+id/button2Act"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvAV"
+        android:layout_alignRight="@+id/etRV"
         android:layout_below="@+id/etAV"
-        android:layout_marginTop="60dp"
-        android:text="@string/button_weiter"
-        android:onClick="OpenWerbungsKostenActivity" />
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:onClick="OpenWerbungsKostenActivity"
+        android:text="@string/button_weiter" />
     
      </RelativeLayout>
 </ScrollView>

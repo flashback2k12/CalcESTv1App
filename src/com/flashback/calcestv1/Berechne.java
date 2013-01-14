@@ -10,6 +10,7 @@ public class Berechne {
 */
 		double ENTFERNUNGSPAUSCHALE = 0.3;
 		double KONTOFUEHRUNG = 16.0;
+		double WKPB = 1000.00;
 		double WerbungsKostenAbzug = 0.0;
 		double ArbeitsMittelAbzug = 0.0;
 		double TelefonKostenAbzug = 0.0;
@@ -40,8 +41,8 @@ public class Berechne {
 /*
 * Kontrollstruktur zum Werbungskostenabzug --> pauschal oder tatsaechliche ausgaben guenstiger fuer AN
 */
-		if (WerbungsKostenGezahlt <= 1000.0) {
-			WerbungsKostenAbzug = 1000.0;
+		if (WerbungsKostenGezahlt <= WKPB) {
+			WerbungsKostenAbzug = WKPB;
 		} else {
 			WerbungsKostenAbzug = Math.round(WerbungsKostenGezahlt * 100.00) / 100.00;
 		}
@@ -52,38 +53,45 @@ public class Berechne {
 /*
 * Berechnung Summe der Einkuenfte + Ausgabe gerundetes Ergebnis
 */
-    //mmeEinkunft = JahresBruttoLohn - WerbungsKosten;
+		double SummeEinkunft = JahresBruttoLohn - WerbungsKosten;
 		return Math.round(SummeEinkunft * 100.00) / 100.00;
 	}
 	
 	public static double GesamtbetragEinkunft(double SummeEinkunft){
+/*
+* Berechnung Gesamtbetrag der Einkuenfte ohne zusaetzliche Angaben (Erweiterung in spaeteren Versionen) + Ausgabe gerundetes Ergebnis
+*/
 		double GesamtbetragEinkunft = SummeEinkunft;
 		return Math.round(GesamtbetragEinkunft*100.00)/100.00;
 	}
 	
 	public static double GesamtbetragEinkunftErweitert(double SummeEinkunft,double AlleinerziehendeFB, double AltersFB, double LandwirteFB){
+/*
+* Berechnung Gesamtbetrag der Einkuenfte mit zusaetzliche Angaben (Erweiterung in spaeteren Versionen) + Ausgabe gerundetes Ergebnis
+*/
 		double GesamtbetragEinkunft = SummeEinkunft - AlleinerziehendeFB - AltersFB - LandwirteFB;
 		return Math.round(GesamtbetragEinkunft*100.00)/100.00;
 	}
 	
 	public static double SpendenAbzug (double GesamtBetragEinkunft, double SpendenGezahlt){
 		
+		double SPENDENPB = 36.00;
 		double maxSpenden = GesamtBetragEinkunft*20/100;
 		double spendenAbzug;
 		
-		if ((SpendenGezahlt >= 36) & (SpendenGezahlt <= maxSpenden))
+		if ((SpendenGezahlt >= SPENDENPB) & (SpendenGezahlt <= maxSpenden))
 		{
 		spendenAbzug = SpendenGezahlt;
 		return spendenAbzug; 
 		}
-		else if ((SpendenGezahlt >= 36) & (SpendenGezahlt >= maxSpenden))
+		else if ((SpendenGezahlt >= SPENDENPB) & (SpendenGezahlt >= maxSpenden))
 		{
 		spendenAbzug = maxSpenden;
 		return spendenAbzug;
 		}
 		else
 		{
-		return spendenAbzug = 36;
+		return spendenAbzug = SPENDENPB;
 		}
 	}
 	
@@ -118,18 +126,19 @@ public class Berechne {
 	
 	public static double vorsorgeAufwand (int steuerJahr, double RVJahr, double KVJahr, double PVJahr, double AVJahr, double HV, double UV, double BU, double Ruerup, double LvMit, double LvOhne){
 		
+		double SONSVORSORGEPAUSCHAL = 1900.00;
 		double vorsorgeAufwand = 0.0;
 		double sonsVorsorgeAufwand = KVJahr+PVJahr+AVJahr+UV+HV+BU+(LvMit*0.88)+LvOhne; 
 		
-		if((KVJahr+PVJahr) <= 1900)
+		if((KVJahr+PVJahr) <= SONSVORSORGEPAUSCHAL)
 		{
-			if(sonsVorsorgeAufwand <= 1900)
+			if(sonsVorsorgeAufwand <= SONSVORSORGEPAUSCHAL)
 			{
 				sonsVorsorgeAufwand = KVJahr+PVJahr+AVJahr+UV+HV+BU+(LvMit*0.88)+LvOhne;
 			}
 			else
 			{
-				sonsVorsorgeAufwand = 1900; 
+				sonsVorsorgeAufwand = SONSVORSORGEPAUSCHAL; 
 			}
 		}
 		else
@@ -266,8 +275,37 @@ public class Berechne {
 		}
 	}
 	
-	public static double ergebnisSteuer (double einkommenSteuer, double soliZuschlag, double lohnSteuerJahr, double soliZuschlagJahr){
-		double ergebnis = einkommenSteuer + soliZuschlag - lohnSteuerJahr - soliZuschlagJahr;
+	public static double hnDlAbzug (double hnDlMitAN, double hnDlOhneAN, double handwerkerL){
+		
+		double HNDLMITANMAX = 510.00;
+		double HNDLOHNEMAX = 4000.00;
+		double HANDWERKERLMAX = 1200.00;
+		double ABZUGFAKTOR = 0.2;
+		double hnDlMitAnAbzug = 0.0;
+		double hnDlOhneAnAbzug = 0.0;
+		double handwerkerLAbzug = 0.0;
+		
+		if((hnDlMitAN*ABZUGFAKTOR) <= HNDLMITANMAX){
+			hnDlMitAnAbzug = (hnDlMitAN*ABZUGFAKTOR);
+		} else {
+			hnDlMitAnAbzug = HNDLMITANMAX;
+		}
+		if ((hnDlOhneAN*ABZUGFAKTOR) <= HNDLOHNEMAX){
+			hnDlOhneAnAbzug = (hnDlOhneAN*ABZUGFAKTOR);
+		} else {
+			hnDlOhneAnAbzug = HNDLOHNEMAX;
+		}
+		if ((handwerkerL*ABZUGFAKTOR) <= HANDWERKERLMAX){
+			handwerkerLAbzug = (handwerkerL*ABZUGFAKTOR);
+		} else {
+			handwerkerLAbzug = HANDWERKERLMAX;
+		}
+		
+		return Math.round((hnDlMitAnAbzug+hnDlOhneAnAbzug+handwerkerLAbzug)*100.00)/100.00; 
+	}
+	
+	public static double ergebnisSteuer (double einkommenSteuer, double soliZuschlag, double lohnSteuerJahr, double soliZuschlagJahr, double hnDlAbzug){
+		double ergebnis = einkommenSteuer + soliZuschlag - lohnSteuerJahr - soliZuschlagJahr - hnDlAbzug;
 		return Math.round(ergebnis*100.00)/100.00;
 	}
 }

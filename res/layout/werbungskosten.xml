@@ -8,7 +8,7 @@ android:layout_height="fill_parent" >
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="547dp" >
+    android:layout_height="501dp" >
 
     <TextView
         android:id="@+id/textView1"
@@ -127,35 +127,35 @@ android:layout_height="fill_parent" >
         android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button3Act"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button3Act2"
-        android:layout_alignBottom="@+id/button3Act2"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_marginRight="19dp"
-        android:text="@string/button_WK_ABC" 
-        android:onClick="OpenBrowserWK_ABC"/>
+        android:layout_alignRight="@+id/etTelefonkostenGezahlt"
+        android:layout_below="@+id/etTelefonkostenGezahlt"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:onClick="OpenVorsorgeActivity"
+        android:text="@string/button_weiter" />
 
     <Button
         android:id="@+id/button3Act2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvTelefonkostenGezahlt"
-        android:layout_below="@+id/etTelefonkostenGezahlt"
-        android:layout_marginTop="76dp"
+        android:layout_below="@+id/button3Act"
+        android:layout_marginTop="30dp"
         android:onClick="OpenBrowserMaps"
         android:text="@string/button_maps" />
 
     <Button
-        android:id="@+id/button3Act"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button3Act2"
-        android:layout_below="@+id/button3Act2"
-        android:layout_marginTop="31dp"
-        android:onClick="OpenVorsorgeActivity"
-        android:text="@string/button_weiter" />
+        android:layout_alignBaseline="@+id/button3Act2"
+        android:layout_alignBottom="@+id/button3Act2"
+        android:layout_alignRight="@+id/button3Act"
+        android:onClick="OpenBrowserWK_ABC"
+        android:text="@string/button_WK_ABC" />
        
 	</RelativeLayout>
 </ScrollView>

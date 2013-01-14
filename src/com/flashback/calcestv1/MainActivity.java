@@ -3,6 +3,8 @@ package com.flashback.calcestv1;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -20,6 +24,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
+	
+	List<String> VerlaufList = new ArrayList<String>();
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,6 +50,7 @@ public class MainActivity extends Activity {
 		 * oeffne naechte activity
 		 */
 		setContentView(R.layout.gehaltsschein);
+		VerlaufList.add("Steuerjahr: "+ F_SteuerJahr.getText().toString());
 		}
 		catch (Exception e){
 			Toast.makeText(getApplicationContext(), "integer wert verwenden", Toast.LENGTH_LONG).show();
@@ -77,6 +84,9 @@ public class MainActivity extends Activity {
 		 * oeffne naechte activity
 		 */
 		setContentView(R.layout.werbungskosten);
+		VerlaufList.add("Bruttolohn: "+ F_BruttoGehalt.getText().toString());
+		VerlaufList.add("Lohnsteuer: "+ F_LohnSteuer.getText().toString());
+		VerlaufList.add("SoliZuschlag: "+ F_SolZ.getText().toString());
 		} 
 		catch (Exception e) {
 			Toast.makeText(getApplicationContext(), "double wert verwenden", Toast.LENGTH_LONG).show();
@@ -177,12 +187,24 @@ public class MainActivity extends Activity {
 		 * initialisierung aussergewoehnliche belastungen
 		 */
 		EditText F_KrankheitskostenGezahlt = (EditText)findViewById(R.id.etKrankheitskostenGezahlt);
+		/*
+		 * initialisierung haushaltsnahe Dienstleistungen
+		 */
+		EditText F_HnDlMitAN = (EditText)findViewById(R.id.etHnDlMitAn);
+		EditText F_HnDlOhneAN = (EditText)findViewById(R.id.etHnDlOhneAn);
+		EditText F_HandwerkerLeistung = (EditText)findViewById(R.id.etHnDlHandwerker);
 		
 		try{
 		/*
 		 * uebergabe AGB
 		 */
 		DataAGB.agB.setKrankheitsKostenGezahlt(Double.parseDouble(F_KrankheitskostenGezahlt.getText().toString()));
+		/*
+		 * uebergabe hnDL
+		 */
+		DataAGB.agB.setHnDlKraftMitAN(Double.parseDouble(F_HnDlMitAN.getText().toString()));
+		DataAGB.agB.setHnDlKraftOhneAN(Double.parseDouble(F_HnDlOhneAN.getText().toString()));
+		DataAGB.agB.setHandwerkerLeistung(Double.parseDouble(F_HandwerkerLeistung.getText().toString()));
 		/*
 		 * oeffne naechste activity
 		 */
@@ -319,15 +341,27 @@ public class MainActivity extends Activity {
 		EditText F_JahresSoliZuschlag = (EditText)findViewById(R.id.etLine12);
 		F_JahresSoliZuschlag.setText("vorausbezahlter Soli: "+DataGehalt.dg.getSoliZuschlagJahr());
 		/*
+		 * berechne haushaltsnahe dienstleistungsabzug 
+		 */
+		double mHnDlMitAN = DataAGB.agB.getHnDlKraftMitAN();
+		double mHnDlOhneAN = DataAGB.agB.getHnDlKraftOhneAN();
+		double mHandwerkerL = DataAGB.agB.getHandwerkerLeistung();
+		double mHnDlAbzug = 0.0;
+		
+		mHnDlAbzug = Berechne.hnDlAbzug(mHnDlMitAN, mHnDlOhneAN, mHandwerkerL);
+		
+		EditText F_hnDlAbzug = (EditText)findViewById(R.id.etLine13);
+		F_hnDlAbzug.setText("Abzug gemäß §35a EStG: " +Math.round(mHnDlAbzug*100.00)/100.00);
+		/*
 		 * berechnung nachzahlung / erstattung
 		 */
 		double mlohnSteuerJahr = DataGehalt.dg.getLohnSteuerJahr();
 		double mSoliZuschlagJahr = DataGehalt.dg.getSoliZuschlagJahr();
 		double mErgebnisBerechnung = 0.0;
 				
-		mErgebnisBerechnung = Berechne.ergebnisSteuer(mEinkommensteuer, mSoliZuschlag, mlohnSteuerJahr, mSoliZuschlagJahr);
+		mErgebnisBerechnung = Berechne.ergebnisSteuer(mEinkommensteuer, mSoliZuschlag, mlohnSteuerJahr, mSoliZuschlagJahr, mHnDlAbzug);
 		
-		EditText F_ergebnisSteuer = (EditText)findViewById(R.id.etLine13);
+		EditText F_ergebnisSteuer = (EditText)findViewById(R.id.etLine14);
 		F_ergebnisSteuer.setText("Ergebnis: " +Math.round(mErgebnisBerechnung*100.00)/100.00);
 //		DataBerechnung.db.setErgebnisBerechnung(Double.parseDouble(F_ergebnisSteuer.getText().toString()));
 	}
@@ -365,6 +399,7 @@ public class MainActivity extends Activity {
 		EditText F_line11 = (EditText)findViewById(R.id.etLine11);
 		EditText F_line12 = (EditText)findViewById(R.id.etLine12);
 		EditText F_line13 = (EditText)findViewById(R.id.etLine13);
+		EditText F_line14 = (EditText)findViewById(R.id.etLine14);
 				
 		String FeldtxtFileDir = txtFileDir.getText().toString(); 
 		String line1 = F_line1.getText().toString();
@@ -380,6 +415,7 @@ public class MainActivity extends Activity {
 		String line11 = F_line11.getText().toString();
 		String line12 = F_line12.getText().toString();
 		String line13 = F_line13.getText().toString();
+		String line14 = F_line14.getText().toString();
 				
 		try {
 			File myFile = new File(FeldtxtFileDir);
@@ -434,6 +470,10 @@ public class MainActivity extends Activity {
 			myOutWriter.append(line13);
 			myOutWriter.append("\n");
 			myOutWriter.append("--------------------------------------------");
+			myOutWriter.append("\n");
+			myOutWriter.append(line14);
+			myOutWriter.append("\n");
+			myOutWriter.append("--------------------------------------------");
 			myOutWriter.close();
 			fOut.close();
 			Toast.makeText(getBaseContext(),"Done writing SD ",Toast.LENGTH_SHORT).show();
@@ -442,4 +482,19 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	public void btnVerlauf (View view) {
+		
+		setContentView(R.layout.verlauf);
+		
+		ArrayAdapter<String> adapterVerlauf1 = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, VerlaufList);
+//		ArrayAdapter<String> adapterVerlauf2 = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_2, VerlaufList);
+		ListView lVerlauf1 = (ListView) findViewById(R.id.listView1);
+//		ListView lVerlauf2 = (ListView) findViewById(R.id.listView2);
+		lVerlauf1.setAdapter(adapterVerlauf1); 
+//		lVerlauf2.setAdapter(adapterVerlauf2); 
+	}
+	
+	public void btnBack (View view){
+		setContentView(R.layout.auswertung);
+	}
 }

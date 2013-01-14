@@ -148,7 +148,8 @@ android:layout_height="fill_parent" >
         android:layout_alignLeft="@+id/tvLvMitKap"
         android:layout_below="@+id/etLvMitKap"
         android:layout_marginTop="5dp"
-        android:text="@string/lvMitKap_2" />
+        android:text="@string/lvMitKap_2"
+        android:textSize="@dimen/smallTest" />
 
     <TextView
         android:id="@+id/tvLvOhneKap"
@@ -156,7 +157,7 @@ android:layout_height="fill_parent" >
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvLvMitKap2"
         android:layout_below="@+id/tvLvMitKap2"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@string/lvOhneKap" />
 
     <EditText
@@ -176,17 +177,19 @@ android:layout_height="fill_parent" >
         android:layout_alignLeft="@+id/tvLvOhneKap"
         android:layout_below="@+id/tvLvOhneKap"
         android:layout_marginTop="5dp"
-        android:text="@string/lvOhneKap_2" />
+        android:text="@string/lvOhneKap_2"
+        android:textSize="@dimen/smallTest" />
 
     <Button
         android:id="@+id/button4Act"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="30dp"
-        android:text="@string/button_weiter" 
-        android:onClick="OpenAgBelastungActivity"/>
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50dp"
+        android:onClick="OpenAgBelastungActivity"
+        android:text="@string/button_weiter" />
     
 	</RelativeLayout>
 </ScrollView>
