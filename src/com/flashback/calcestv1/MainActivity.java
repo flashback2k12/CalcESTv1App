@@ -1,39 +1,68 @@
+/**
+ * Credits:
+ * make folder / file: http://www.java-samples.com/showtutorial.php?tutorialid=1523
+ * send feedback: http://stackoverflow.com/questions/11320685/how-to-implement-send-feedback-feature-in-android
+ * textview hyperlink: http://stackoverflow.com/questions/9852184/android-textview-hyperlink
+ * open url with button click: http://stackoverflow.com/questions/4930228/open-a-url-on-click-of-ok-button-in-android
+ */
+
 package com.flashback.calcestv1;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
 	
-	List<String> VerlaufList = new ArrayList<String>();
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		super.onCreateOptionsMenu(menu);
+	    MenuInflater hardwaremenu = getMenuInflater();
+	    hardwaremenu.inflate(R.menu.activity_main, menu);
+	    return true;
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+	    switch (item.getItemId()){
+	    case R.id.sendEmail:
+	        Intent Email = new Intent(Intent.ACTION_SEND);
+	        Email.setType("text/email");
+	        Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "feedbackcalcest@gmail.com" });
+	        Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+	        Email.putExtra(Intent.EXTRA_TEXT, "Vielen Dank für das testen meiner ersten App! Bitte sende mir deine Meinung! Angaben: Telefon/Android-OS/Pro/Kon/Anregungen! Danke! :-)");
+	        startActivity(Intent.createChooser(Email, "Send Feedback:"));
+	        return true;
+	    case R.id.credits:
+	    	setContentView(R.layout.credits);
+	    	TextView tv = (TextView)findViewById(R.id.tvHPgoogle);
+	    	tv.setText(Html.fromHtml("<a href=https://github.com/flashback2k12/CalcESTv1App> GITHUB "));
+	        tv.setMovementMethod(LinkMovementMethod.getInstance());
+	    	return true; 
+	    }
+		return false;
+	}
 		
 	public void OpenGehaltsscheinActivity (View view){
 		/*
@@ -50,7 +79,6 @@ public class MainActivity extends Activity {
 		 * oeffne naechte activity
 		 */
 		setContentView(R.layout.gehaltsschein);
-		VerlaufList.add("Steuerjahr: "+ F_SteuerJahr.getText().toString());
 		}
 		catch (Exception e){
 			Toast.makeText(getApplicationContext(), "integer wert verwenden", Toast.LENGTH_LONG).show();
@@ -84,9 +112,6 @@ public class MainActivity extends Activity {
 		 * oeffne naechte activity
 		 */
 		setContentView(R.layout.werbungskosten);
-		VerlaufList.add("Bruttolohn: "+ F_BruttoGehalt.getText().toString());
-		VerlaufList.add("Lohnsteuer: "+ F_LohnSteuer.getText().toString());
-		VerlaufList.add("SoliZuschlag: "+ F_SolZ.getText().toString());
 		} 
 		catch (Exception e) {
 			Toast.makeText(getApplicationContext(), "double wert verwenden", Toast.LENGTH_LONG).show();
@@ -482,19 +507,7 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	public void btnVerlauf (View view) {
-		
-		setContentView(R.layout.verlauf);
-		
-		ArrayAdapter<String> adapterVerlauf1 = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, VerlaufList);
-//		ArrayAdapter<String> adapterVerlauf2 = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_2, VerlaufList);
-		ListView lVerlauf1 = (ListView) findViewById(R.id.listView1);
-//		ListView lVerlauf2 = (ListView) findViewById(R.id.listView2);
-		lVerlauf1.setAdapter(adapterVerlauf1); 
-//		lVerlauf2.setAdapter(adapterVerlauf2); 
-	}
-	
 	public void btnBack (View view){
-		setContentView(R.layout.auswertung);
+		setContentView(R.layout.activity_main);
 	}
 }

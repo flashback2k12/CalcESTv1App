@@ -289,17 +289,6 @@
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button7Act1"
-        android:layout_alignBottom="@+id/button7Act1"
-        android:layout_alignRight="@+id/etLine1"
-        android:text="@string/verlauf" 
-        android:onClick="btnVerlauf"/>
-
     <EditText
         android:id="@+id/txtFileDir"
         android:layout_width="330dp"

@@ -37,9 +37,10 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvHaftpflicht"
         android:layout_alignBottom="@+id/tvHaftpflicht"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@+id/tvHaftpflicht"
-        android:ems="10" 
-        android:inputType="numberDecimal">
+        android:ems="10"
+        android:inputType="numberDecimal" >
 
         <requestFocus />
     </EditText>
@@ -61,8 +62,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBottom="@+id/tvUnfall"
         android:layout_alignLeft="@+id/etHaftpflicht"
         android:layout_alignParentRight="true"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvBU"
@@ -80,8 +82,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvBU"
         android:layout_alignBottom="@+id/tvBU"
         android:layout_alignLeft="@+id/etUnfall"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvRuerup"
@@ -100,8 +103,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBottom="@+id/tvRuerup"
         android:layout_alignLeft="@+id/etBU"
         android:layout_alignParentRight="true"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvRiester"
@@ -119,8 +123,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvRiester"
         android:layout_alignBottom="@+id/tvRiester"
         android:layout_alignLeft="@+id/etRuerup"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvLvMitKap"
@@ -138,8 +143,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvLvMitKap"
         android:layout_alignBottom="@+id/tvLvMitKap"
         android:layout_alignLeft="@+id/etRiester"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvLvMitKap2"
@@ -167,8 +173,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBottom="@+id/tvLvOhneKap"
         android:layout_alignLeft="@+id/etLvMitKap"
         android:layout_alignParentRight="true"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/textView2"

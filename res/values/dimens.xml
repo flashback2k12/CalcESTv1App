@@ -2,4 +2,6 @@
 <resources>
     <dimen name="smallTest">10dp</dimen>
     <dimen name="mediumTest">15dp</dimen>
+    <dimen name="highTest">25dp</dimen>
+    <dimen name="midHighTest">20dp</dimen>
 </resources>

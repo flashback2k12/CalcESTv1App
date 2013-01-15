@@ -37,9 +37,11 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvBruttoGehalt"
         android:layout_alignBottom="@+id/tvBruttoGehalt"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@+id/tvBruttoGehalt"
         android:ems="10"
         android:inputType="numberDecimal" >
+
     	<requestFocus />
     </EditText>
 
@@ -59,8 +61,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvLohnSteuer"
         android:layout_alignBottom="@+id/tvLohnSteuer"
         android:layout_alignLeft="@+id/etBruttoGehalt"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/etSolZ"
@@ -69,8 +72,9 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvSolZ"
         android:layout_alignBottom="@+id/tvSolZ"
         android:layout_alignLeft="@+id/etLohnSteuer"
-        android:ems="10" 
-        android:inputType="numberDecimal"/>
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvSolZ"
@@ -97,6 +101,7 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvKV"
         android:layout_alignBottom="@+id/tvKV"
         android:layout_alignLeft="@+id/etSolZ"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -116,6 +121,7 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvPV"
         android:layout_alignBottom="@+id/tvPV"
         android:layout_alignLeft="@+id/etKV"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -135,6 +141,7 @@ android:layout_height="fill_parent" >
         android:layout_alignBaseline="@+id/tvRV"
         android:layout_alignBottom="@+id/tvRV"
         android:layout_alignLeft="@+id/etPV"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -155,6 +162,7 @@ android:layout_height="fill_parent" >
         android:layout_alignBottom="@+id/tvAV"
         android:layout_alignLeft="@+id/etRV"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 
